@@ -30,7 +30,7 @@ export default function Todo() {
 
   return (
     <div className=" flex justify-center items-center flex-col pt-15 bg-white h-screen">
-      <div className="h-fit w-[377px] bg-white border-3 border-green-500">
+      <div className="h-fit w-[377px] bg-white border-3 border-indigo-500">
         <div className="flex justify-center mt-6 text-black font-semibold text-[20px]">
           To-Do List
         </div>
@@ -90,39 +90,37 @@ export default function Todo() {
   );
 }
 
-export const Task = (props) => {
-  return (
-    <div className="w-[345px] h-[62px] flex items-center my-5 px-4 gap-2.5 bg-gray-100">
-      <input defaultChecked={props.isCompleted} type="checkbox"></input>
-      <div className="text-black">{props.taskText}</div>
+// export const Task = (props) => {
+//   return (
+//     <div className="w-[345px] h-[62px] flex items-center my-5 px-4 gap-2.5 bg-gray-100">
+//       <input defaultChecked={props.isCompleted} type="checkbox"></input>
+//       <div className="text-black">{props.taskText}</div>
 
-      {props.isCompleted && (
-        <button className="p-3 bg-red-50 text-red-500 rounded-xl  ">
-          Delete
-        </button>
-      )}
-    </div>
-  );
-};
+//       {props.isCompleted && (
+//         <button className="p-3 bg-red-50 text-red-500 rounded-xl  ">
+//           Delete
+//         </button>
+//       )}
+//     </div>
+//   );
+// };
 
-import Todo from "@/app/todo/page";
-
-export const Box = ({ backgroundColor, height, color, title, onClick }) => {
-  return (
-    <button
-      onClick={onClick}
-      className={
-        " rounded-md py-2 px-4"
-        // className +
-        // `${isActive ? "bg-[#3C82F6]" : "bg-[#F3F4F6] "}`
-      }
-      style={{
-        backgroundColor,
-        height,
-        color,
-      }}
-    >
-      {title}
-    </button>
-  );
-};
+// export const Box = ({ backgroundColor, height, color, title, onClick }) => {
+//   return (
+//     <button
+//       onClick={onClick}
+//       className={
+//         " rounded-md py-2 px-4"
+//         // className +
+//         // `${isActive ? "bg-[#3C82F6]" : "bg-[#F3F4F6] "}`
+//       }
+//       style={{
+//         backgroundColor,
+//         height,
+//         color,
+//       }}
+//     >
+//       {title}
+//     </button>
+//   );
+// };
