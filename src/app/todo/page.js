@@ -9,7 +9,13 @@ export default function Todo() {
 
   const [inputValue, setInputValue] = useState("");
 
-  const [filterStatus, setFilterStatus] = useState("all");
+  const [filterStatus, setFilterStatus] = useState("All");
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filterStatus === "All") return true;
+    if (filterStatus === "Active") return !todo.isDone;
+    return todo.isDone;
+  });
 
   const handleOnchange = (event) => {
     setInputValue(event.target.value);
@@ -19,16 +25,10 @@ export default function Todo() {
     setTodos([...todos, { title: inputValue, isDone: false }]);
     setInputValue("");
   };
-  // const data = [
-  //   {
-  //     dataName: "Create PR 2",
-  //     isCompleted: true,
-  //   },
-  //   {
-  //     dataName: "Create PR ",
-  //     isCompleted: false,
-  //   },
-  // ];
+
+  const handleFilter = (status) => {
+    setFilterStatus(status);
+  };
 
   return (
     <div className=" flex justify-center items-center flex-col pt-15 bg-white h-screen">
@@ -46,35 +46,36 @@ export default function Todo() {
           />
 
           <Box
+            isActive={true}
             onClick={handleOnClick}
             className="border border-[#E4E4E7] text-[#71717A] bg-[#3C82F6]"
             title="Add"
-            backgroundColor="#3C82F6"
             text="Hello"
           />
         </div>
         <div className="flex  gap-[6px] mt-5  w-[32px] ml-4 text-[12px]">
           <Box
+            onClick={() => handleFilter("All")}
             title="All"
-            backgroundColor="#3C82F6"
-            text="white"
             height="32px"
+            isActive={filterStatus === "All"}
           />
           <Box
+            onClick={() => handleFilter("Active")}
             title="Active"
-            backgroundColor="#F3F4F6"
             height="32px"
-            color="black"
+            isActive={filterStatus === "Active"}
           />
           <Box
+            onClick={() => handleFilter("Completed")}
             title="Completed"
             backgroundColor="#F3F4F6"
             height="32px"
-            color="black"
+            isActive={filterStatus === "Completed"}
           />
         </div>
         <div className="px-4 ">
-          {todos.map((todo, index) => (
+          {filteredTodos.map((todo, index) => (
             <Task
               key={index}
               taskText={todo.title}
@@ -104,18 +105,3 @@ export default function Todo() {
     </div>
   );
 }
-
-// export const Task = (props) => {
-//   return (
-//     <div className="w-[345px] h-[62px] flex items-center my-5 px-4 gap-2.5 bg-gray-100">
-//       <input defaultChecked={props.isCompleted} type="checkbox"></input>
-//       <div className="text-black">{props.taskText}</div>
-
-//       {props.isCompleted && (
-//         <button className="p-3 bg-red-50 text-red-500 rounded-xl  ">
-//           Delete
-//         </button>
-//       )}
-//     </div>
-//   );
-// };
