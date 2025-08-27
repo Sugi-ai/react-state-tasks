@@ -9,12 +9,14 @@ export default function Todo() {
 
   const [inputValue, setInputValue] = useState("");
 
+  const [filterStatus, setFilterStatus] = useState("all");
+
   const handleOnchange = (event) => {
     setInputValue(event.target.value);
   };
 
   const handleOnClick = () => {
-    setTodos([...todos, { title: inputValue, isDone: true }]);
+    setTodos([...todos, { title: inputValue, isDone: false }]);
     setInputValue("");
   };
   // const data = [
@@ -60,8 +62,7 @@ export default function Todo() {
           />
           <Box
             title="Active"
-            backgroundColor="#F3F4F6
-"
+            backgroundColor="#F3F4F6"
             height="32px"
             color="black"
           />
@@ -74,13 +75,27 @@ export default function Todo() {
         </div>
         <div className="px-4 ">
           {todos.map((todo, index) => (
-            <Task key={index} taskText={todo.title}></Task>
+            <Task
+              key={index}
+              taskText={todo.title}
+              isDone={todo.isDone}
+              setTodos={setTodos}
+              index={index}
+            ></Task>
           ))}
         </div>
-        <div className="flex justify-between px-[20px] mt-5">
-          <div className="text-[#6B7280]">1 of 2 tasks completed</div>
-          <div className="text-[#EF4444]">Clear completed</div>
-        </div>
+
+        {todos.length > 0 ? (
+          <div className="flex justify-between px-[20px] mt-5">
+            <div className="text-[#6B7280]">1 of 2 tasks completed</div>
+            <div className="text-[#EF4444]">Clear completed</div>
+          </div>
+        ) : (
+          <div className="flex justify-between px-[20px] mt-5">
+            <div className="text-[#6B7280]">No tasks yet.Add one above</div>
+          </div>
+        )}
+
         <div className="text-[12px] flex justify-center p-1 mt-10">
           <p className="text-gray-400">Powered by</p>
           <a className="text-blue-500">Pinecone academy</a>
@@ -102,25 +117,5 @@ export default function Todo() {
 //         </button>
 //       )}
 //     </div>
-//   );
-// };
-
-// export const Box = ({ backgroundColor, height, color, title, onClick }) => {
-//   return (
-//     <button
-//       onClick={onClick}
-//       className={
-//         " rounded-md py-2 px-4"
-//         // className +
-//         // `${isActive ? "bg-[#3C82F6]" : "bg-[#F3F4F6] "}`
-//       }
-//       style={{
-//         backgroundColor,
-//         height,
-//         color,
-//       }}
-//     >
-//       {title}
-//     </button>
 //   );
 // };

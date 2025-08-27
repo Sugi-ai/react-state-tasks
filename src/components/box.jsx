@@ -1,4 +1,4 @@
-import Todo from "@/app/todo/page";
+import Todo from "@/app/toDo/page";
 
 export const Box = ({ backgroundColor, height, color, title, onClick }) => {
   return (

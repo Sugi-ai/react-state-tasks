@@ -1,17 +1,9 @@
-export const Task = ({
-  setTodos,
-  index,
-  isDone,
-  taskText,
-  todos,
-  handleclick,
-}) => {
-  const handleOnChange = (event) => {
+export const Task = ({ setTodos, index, isDone, taskText, todos }) => {
+  const handleOnChange = (event, index) => {
     setTodos((prev) =>
       prev.map((el, i) => {
         if (i === index) {
           el.isDone = event.target.checked;
-          handleclick;
         }
         return el;
       })
@@ -27,7 +19,7 @@ export const Task = ({
     <div className="w-[345px] h-[62px] flex items-center my-5 px-4 gap-2.5 bg-gray-100 justify-between">
       <div className="flex gap-2.5">
         <input
-          onChange={handleOnChange}
+          onChange={(event) => handleOnChange(event, index)}
           checked={isDone}
           type="checkbox"
         ></input>
