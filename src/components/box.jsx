@@ -1,5 +1,3 @@
-import Todo from "@/app/toDo/page";
-
 export const Box = ({ height, title, onClick, isActive }) => {
   return (
     <button
