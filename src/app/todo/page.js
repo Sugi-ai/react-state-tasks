@@ -22,7 +22,7 @@ export default function Todo() {
   };
 
   const handleOnClick = () => {
-    setTodos([...todos, { title: inputValue, isDone: false }]);
+    setTodos([...todos, { title: inputValue, isDone: false, id: Date.now() }]);
     setInputValue("");
   };
 
@@ -30,9 +30,14 @@ export default function Todo() {
     setFilterStatus(status);
   };
 
+  const deleteComplete = () => {
+    const deleteCompleted = todos.filter((todo) => !todo.isDone);
+    setTodos(deleteCompleted);
+  };
+
   return (
-    <div className=" flex justify-center items-center flex-col pt-15 bg-white h-screen">
-      <div className="h-fit w-[377px] bg-white border-3 border-indigo-500">
+    <div className=" flex justify-center items-center flex-col pt-15 bg-[#F3F4F6] h-screen">
+      <div className="h-fit w-[377px] bg-[#FFFFFF] border-solid hover:border-dotted rounded-md shadow-[0_0_12px_0_#00000029]">
         <div className="flex justify-center mt-6 text-black font-semibold text-[20px]">
           To-Do List
         </div>
@@ -77,9 +82,11 @@ export default function Todo() {
         <div className="px-4 ">
           {filteredTodos.map((todo, index) => (
             <Task
+              todos={todos}
               key={index}
               taskText={todo.title}
               isDone={todo.isDone}
+              id={todo.id}
               setTodos={setTodos}
               index={index}
             ></Task>
@@ -88,8 +95,14 @@ export default function Todo() {
 
         {todos.length > 0 ? (
           <div className="flex justify-between px-[20px] mt-5">
-            <div className="text-[#6B7280]">1 of 2 tasks completed</div>
-            <div className="text-[#EF4444]">Clear completed</div>
+            <div className="text-[#6B7280]">
+              {filteredTodos.filter((todo) => todo.isDone).length} of{" "}
+              {todos.length} tasks completed
+            </div>
+            <div className="text-[#EF4444]" onClick={deleteComplete}>
+              {" "}
+              Clear completed
+            </div>
           </div>
         ) : (
           <div className="flex justify-between px-[20px] mt-5">
