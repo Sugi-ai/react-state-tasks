@@ -27,7 +27,7 @@ export default function Todo() {
     if (inputValue !== "") {
       const newTodos = [
         ...todos,
-        { title: inputValue, check: false, id: Date.now() },
+        { title: inputValue, check: false, id: Date.now(), isDone: false },
       ];
       setTodos(newTodos);
       setInputValue("");
@@ -106,8 +106,8 @@ export default function Todo() {
         {todos.length > 0 ? (
           <div className="flex justify-between px-[20px] mt-5">
             <div className="text-[#6B7280]">
-              {todos.filter((todo) => todo.isDone).length} of
-              {todos.length} tasks completed
+              {todos.filter((todo) => todo.isDone).length} of {todos.length}{" "}
+              tasks completed
             </div>
             <div className="text-[#EF4444]" onClick={deleteComplete}>
               {" "}
