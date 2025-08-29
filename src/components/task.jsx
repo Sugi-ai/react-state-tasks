@@ -20,7 +20,7 @@ export const Task = ({ setTodos, index, isDone, taskText, todos, id }) => {
       <div className="flex gap-2.5 w-[245px]">
         <input
           onChange={(event) => handleOnChange(event, id)}
-          checked={isDone}
+          defaultChecked={isDone}
           type="checkbox"
         ></input>
 
