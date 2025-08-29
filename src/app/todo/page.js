@@ -32,7 +32,7 @@ export default function Todo() {
       setTodos(newTodos);
       setInputValue("");
     } else {
-      alert("U need write something!");
+      alert("Hooson baina yumaa bicheeed Add daraaacheee!");
     }
   };
 
